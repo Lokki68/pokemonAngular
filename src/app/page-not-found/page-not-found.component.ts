@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
       <h1>
         Hey, cette page n'existe pas !
       </h1>
-      <a routerLink="/pokemon" class="waves-effect waves-teal btn-flat" >
+      <a routerLink="/pokemons" class="waves-effect waves-teal btn-flat" >
         Retourner à l'accueil
       </a>
     </div>
@@ -16,11 +16,4 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class PageNotFoundComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class PageNotFoundComponent  {}
