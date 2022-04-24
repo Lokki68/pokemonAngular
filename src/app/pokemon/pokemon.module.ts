@@ -10,6 +10,7 @@ import {FormsModule} from "@angular/forms";
 import { PokemonFormComponent } from './pokemon-form/pokemon-form.component';
 import { EditPokemonComponent } from './edit-pokemon/edit-pokemon.component';
 import { AddPokemonComponent } from './add-pokemon/add-pokemon.component';
+import { SeachPokemonComponent } from './seach-pokemon/seach-pokemon.component';
 
 const pokemonRoutes: Routes = [
   { path: 'pokemon/add', component: AddPokemonComponent },
@@ -27,7 +28,8 @@ const pokemonRoutes: Routes = [
     PokemonTypeColorPipe,
     PokemonFormComponent,
     EditPokemonComponent,
-    AddPokemonComponent
+    AddPokemonComponent,
+    SeachPokemonComponent
   ],
   imports: [
     CommonModule,

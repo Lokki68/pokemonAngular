@@ -31,8 +31,15 @@ export class PokemonService {
     //return POKEMONS.find(pokemon => pokemon.id == pokemonId);
   }
 
-  addPokemon(pokemon: Pokemon): Observable<null>{
-    return this.http.post('api/pokemons', pokemon, this.httpOptions).pipe(
+  searchPokemonList(term: string): Observable<Pokemon[]> {
+    return this.http.get<Pokemon[]>(`api/pokemons/?name=${term}` ).pipe(
+      tap(res => this.log(res)),
+      catchError(err => this.handleError(err,  []))
+    )
+  }
+
+  addPokemon(pokemon: Pokemon): Observable<Pokemon>{
+    return this.http.post<Pokemon>('api/pokemons', pokemon, this.httpOptions).pipe(
       tap(res => this.log(res)),
       catchError(err => this.handleError(err,  null))
     )
