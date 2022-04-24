@@ -63,7 +63,7 @@
         <!-- Pokemon types -->
         <form class="form-group">
           <label for="types">Types</label>
-          <p *ngFor="let type of types">
+          <p *ngFor="let type of types" id="types">
             <label>
               <input type="checkbox"
                      class="filled-in"
@@ -73,9 +73,9 @@
                      [disabled]="!isTypesValid(type)"
                      (change)="selectType($event, type)"/>
             <span [attr.for]="type">
-              <div class="{{ type | pokemonTypeColor }}">
+              <span class="{{ type | pokemonTypeColor }}">
                 {{ type }}
-              </div>
+              </span>
             </span>
           </label>
           </p>
