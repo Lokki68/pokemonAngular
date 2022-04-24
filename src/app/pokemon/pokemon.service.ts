@@ -6,6 +6,12 @@ import {catchError, Observable, of, tap, throwError} from "rxjs";
 @Injectable()
 export class PokemonService {
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type' : 'application/json'
+    })
+  };
+
   constructor(private http: HttpClient) {
   }
 
@@ -25,17 +31,26 @@ export class PokemonService {
     //return POKEMONS.find(pokemon => pokemon.id == pokemonId);
   }
 
-  updatePokemon(pokemon: Pokemon): Observable<Pokemon|undefined>{
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type' : 'application/json'
-      })
-    };
-
-    return this.http.put('api/pokemons', pokemon, httpOptions).pipe(
+  addPokemon(pokemon: Pokemon): Observable<null>{
+    return this.http.post('api/pokemons', pokemon, this.httpOptions).pipe(
       tap(res => this.log(res)),
-      catchError(err => this.handleError(err,  undefined))
+      catchError(err => this.handleError(err,  null))
+    )
+  }
+
+  updatePokemon(pokemon: Pokemon): Observable<null>{
+
+    return this.http.put('api/pokemons', pokemon, this.httpOptions).pipe(
+      tap(res => this.log(res)),
+      catchError(err => this.handleError(err,  null))
     );
+  };
+
+  deletePokemonById(pokemonId: number): Observable<null>{
+    return this.http.delete(`api/pokemons/${pokemonId}`).pipe(
+      tap(res => this.log(res)),
+      catchError(err => this.handleError(err, null))
+    )
   }
 
   private log(res: any){
